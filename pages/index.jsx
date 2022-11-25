@@ -3,21 +3,20 @@ import Layout from '../components/Layout'
 import { NFTCard } from '../components/nftCard'
 
 export default function Home() {
-  const api_key = "yt-j-vaRkULHSxSyS6ocqFH466leTKNq"
   const [wallet, setWalletAddress] = useState("")
   const [collection, setCollectionAddress] = useState("")
   const [NFTs, setNFTs] = useState([])
   const [fetchForCollection, setFetchForCollection] = useState(false)
+
   const fetchNFTs = async () => {
     let nfts
     console.log("fetching nfts")
+    const api_key = "yt-j-vaRkULHSxSyS6ocqFH466leTKNq"
     const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${api_key}/getNFTs/`
     var requestOptions = {
       method: 'GET'
     };
-
     if (!collection.length) {
-
       const fetchURL = `${baseURL}?owner=${wallet}&withMetadata=true&pageSize=100`
 
       nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
